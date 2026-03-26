@@ -2,7 +2,7 @@
     <div class="fixed overflow-y-auto bg-slate-800 h-screen text-white menu-container transition-all duration-300 shadow-2xl" :style="{ width: menuStore.menuWidth }">
         <!-- 顶部 Logo, 指定高度为 64px, 和右边的 Header 头保持一样高 -->
         <div class="flex items-center justify-center h-[64px]" @click="router.push('/')">
-            <img v-if="menuStore.menuWidth == '250px'" src="@/assets/weblog-logo.png" class="h-[60px]">
+            <img v-if="menuStore.menuWidth == '250px'" :src="blogSettingsStore.blogSettings.logo" class="h-[60px]">
             <img v-else src="@/assets/weblog-logo.png" class="h-[60px]">
         </div>
 
@@ -27,9 +27,11 @@
 import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useMenuStore } from '@/stores/menu'
+import { useBlogSettingsStore } from '@/stores/blogsettings'
 
 const menuStore = useMenuStore()
-
+// 引入博客设置信息 store
+const blogSettingsStore = useBlogSettingsStore()
 const route = useRoute()
 const router = useRouter()
 
